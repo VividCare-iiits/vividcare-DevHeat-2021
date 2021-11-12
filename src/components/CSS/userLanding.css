@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.userMain {
+  background-image: linear-gradient(-225deg, #cbbacc 0%, #2580b3 100%);
+  min-height: 100vh;
+  width: 100vw;
+  padding: 1rem 0;
+}
+
+.userInfo {
+  position: relative;
+  background: #ffffff33;
+  margin: 1rem 10vw;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  box-shadow: inset rgba(0, 0, 0, 0.3) -3px -3px 10px,
+    inset rgba(0, 0, 0, 0.3) 3px 3px 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.infoContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.userLogo {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* margin-top: 15px; */
+    border-radius: 50%;
+    color: #ddd;
+    font-size: 60px;
+    line-height: 100px;
+    text-align: center;
+    margin-left: 0.3vw;
+    margin-right: 0.3vw;
+    box-shadow: inset rgba(0, 0, 0, 0.3) -3px -3px 10px,
+      inset rgba(0, 0, 0, 0.3) 3px 3px 10px;
+}
+
+.infoText {
+    width: 80%; 
+    padding: 0 1rem;
+}
+
+.textInfo {
+    width: 100%;
+    text-align: left;
+}
