@@ -100,3 +100,9 @@ label {
 .btn:hover {
     background: #113c55;
 }
+
+@media screen and (max-width: 500px) {
+    .login {
+        width: 300px;
+    }
+}
