@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .user_login {
+    background-image: linear-gradient(-225deg, #cbbacc 0%, #2580b3 100%);
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(252, 252, 252, 0.4);
+    width: 800px;
+    height: fit-content;
+    border-radius: 20px;
+    padding: 2rem;
+    flex-wrap: wrap;
+    /* border-bottom: rgba(0, 0, 0, 0.7) solid 2px; */
+    /* border-right: rgba(0, 0, 0, 0.7) solid 2px; */
+    box-shadow: inset rgba(252, 252, 252, 0.1) -3px -3px 10px,
+      inset rgba(252, 252, 252, 0.1) 3px 3px 10px;
+  }
+  
+  .log_form {
+      display: none;
+  }
+  
+  .opt {
+      color:  #113c55;
+      font-size:1.2rem;
+      margin: 1rem 0;
+      cursor: pointer;
+  }
+  
+  .opt span {
+      font-weight: bold;
+      color:  #0d2d40;    ;
+  }
+  
+  .log_form.active {
+      display: block;
+      animation: animate 1s;
+  }
+  
+  #sign_op {
+      border-top: rgba(252, 252, 252, 0.9) 1px solid;
+  }
+
+  .mb-3 {
+      height: 100%;
+      width: 100%;
+  }
+  
+  .form-control {
+      background: transparent;
+      border: none;
+      border-bottom: #0d2d40 solid 1px;
+  }
+  
+  @keyframes animate {
+      from { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
+      to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+  }
+  
+  label {
+      /* border: 1px solid #000; */
+      width: 100%;
+      display: flex;
+      /* justify-content: flex-start; */
+  }
+  
+  .btn {
+      width: 150px;
+      background: #0d2d40;
+  }
+  
+  .btn:hover {
+      background: #113c55;
+  }
