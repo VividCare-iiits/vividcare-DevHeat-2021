@@ -3,20 +3,18 @@ import { useAuth, login } from '../firebase/firebase'
 
 const Login = () => {
     const [ender, setEnder] = useState('/enterUserInfo');
-    const [loading, setLoading] = useState(false);
     const emailRef = useRef();
     const passwordRef = useRef();
     async function handleLogin() {
-        setLoading(true);
         try {
             await login(emailRef.current.value, passwordRef.current.value)
+            setEnder('/enterUserInfo')
             console.log(`Logined`)
         }
-        catch {
-            setEnder('/userLogin')
+        catch(error) {
             alert("Error!")
+            setEnder('/userLogin')
         }
-        setLoading(false);
     }
     return (
         <div>
@@ -29,7 +27,7 @@ const Login = () => {
                     <label htmlFor="password" className="form-label">Password</label>
                     <input ref={passwordRef} required type="password" className="form-control" id="password" />
                 </div>
-                <button disabled={loading} type="submit" className="btn btn-primary" onClick={handleLogin}>Submit</button>
+                <button type="submit" className="btn btn-primary" onClick={handleLogin}>Submit</button>
             </form>
         </div>
     )
