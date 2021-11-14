@@ -23,7 +23,11 @@ const App = () => {
           <Route path="/userLanding" element={<UserLanding />} />
           <Route path="/userTimeline" element={<UserTimeline />} />
           <Route path="/enterHospitalInfo" element={<EnterHos />} />
+<<<<<<< HEAD
           <Route path="/hospitallanding" element={<HospitalLanding />} />
+=======
+          <Route path="/hospitalLanding" element={<HospitalLanding />} />
+>>>>>>> 8cd544ed7562edf24e1e61e579df839a5b2277db
         </Routes>
       </div>
     </Router>
