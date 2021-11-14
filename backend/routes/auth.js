@@ -8,7 +8,7 @@ const fetchuser = require("../middleware/fetchuser");
 
 const JWT_SECRET = "Mohitisagood$boy";
 
-//Route1: Create a user using: POST "/api/auth/createser". No login required
+//Route1: Create a user using: POST "/api/auth/createuser". No login required
 router.post(
   "/createuser",
   [

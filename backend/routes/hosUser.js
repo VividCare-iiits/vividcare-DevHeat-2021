@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
+const HosUser = require("../models/HospitalUser") 
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const fetchuser = require("../middleware/fetchuser");
+const fetchhospital = require("../middleware/fetchhospital");
 
 const JWT_SECRET = "Mohitisagood$boy";
 
-//Route1: Create a user using: POST "/api/authHospital/createser". No login required
-router.post( 
-    "/createuser",
+//Route1: Create a user using: POST "/api/hosUser/createuser". No login required
+router.post(
+  "/createuser",
   [
     body("email", "Enter a valid email").isEmail(),
     body("name", "Enter a valid name").isLength({ min: 3 }),
@@ -18,7 +18,7 @@ router.post(
       min: 5,
     }),
     body("phone", "Enter a valid phone number"),
-    body("regID", "Enter a valid Registeration ID")
+    body("regID", "Enter a valid aadhar number")
   ],
   async (req, res) => {
     //if there are errors, return Bad request and the errors
@@ -28,8 +28,8 @@ router.post(
     }
     //check whether th user with these email exists already
     try {
-      let user = await User.findOne({ email: req.body.email });
-      if (user) {
+      let hosUser = await HosUser.findOne({ email: req.body.email });
+      if (hosUser) {
         return res
           .status(400)
           .json({ error: "Sorry a user with these email already exists! " });
@@ -37,16 +37,16 @@ router.post(
       const salt = await bcrypt.genSalt(10);
       const secPass = await bcrypt.hash(req.body.password, salt);
       //creating a new user
-      user = await User.create({
+      hosUser = await HosUser.create({
         name: req.body.name,
         password: secPass,
         email: req.body.email,
         phone: req.body.phone,
-        regID: req.body.regId
+        regID: req.body.regID
       });
       const data = {
-        user: {
-          id: user.id,
+        hosUser: {
+          id: hosUser.id,
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
@@ -60,7 +60,7 @@ router.post(
   }
 );
 
-//Route2: Authenticate a user using: POST "/api/authHospital/login". No login required
+//Route2: Authenticate a user using: POST "/api/auth/login". No login required
 router.post(
   "/login",
   [
@@ -77,19 +77,19 @@ router.post(
     const { email, password } = req.body;
     let success = true;
     try {
-      let user = await User.findOne({ email });
-      if (!user) {
+      let hosUser = await HosUser.findOne({ email });
+      if (!hosUser) {
         // success = false;
         return res.status(400).json({ success ,error: "Wrong Credentials!" });
       }
-      const passwordCompare = await bcrypt.compare(password, user.password);
+      const passwordCompare = await bcrypt.compare(password, hosUser.password);
       if (!passwordCompare) {
         // success = false;
         return res.status(400).json({ success ,error: "Wrong Credentials!" });
       }
       const payload = {
-        user: {
-          id: user.id,
+        hosUser: {
+          id: hosUser.id,
         },
       };
       const authToken = jwt.sign(payload, JWT_SECRET);
@@ -101,19 +101,19 @@ router.post(
   }
 );
 
-//Route3: Get logged in User Details using: POST: api/authHospital/getuser. Login required
+//Route3: Get logged in User Details using: POST: api/auth/getuser. Login required
 router.get(
-  "/getuser", fetchuser, async (req, res) => {
-    try { 
-      const userID = req.user.id
-      console.log(userID);
-      const user = await User.findById(userID).select("-password");
-      console.log(user);
-      res.send(user)
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).send("Internal server Error");
+    "/getuser", fetchhospital, async (req, res) => {
+      try { 
+        const hosUserID = req.hosUser.id
+        console.log(hosUserID);
+        const hosUser = await HosUser.findById(hosUserID).select("-password");
+        console.log(hosUser);
+        res.send(hosUser)
+      } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal server Error");
+      }
     }
-  }
-);
+  );
 module.exports = router;

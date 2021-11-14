@@ -11,7 +11,7 @@ app.use(express.json())
 
 //Available Routes
 app.use('/api/auth', require('./routes/auth'))
-app.use('/api/authHospital', require('./routes/authHospital'))
+app.use('/api/hospital', require('./routes/hosUser'))
 
 app.listen(port, () => {
   console.log(`VividCare backend listening at http://localhost:${port}`)

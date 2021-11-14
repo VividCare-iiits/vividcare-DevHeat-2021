@@ -1,30 +1,26 @@
 import React, { useRef } from 'react'
-import { hosLogin } from '../firebase/hospitalVerifyFire';
+import { loginHospital } from '../../context/HospitalState';
 
 const HosLogin = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const handleLogin = async (e) => {
-        try {
-            await hosLogin(emailRef.current.value, passwordRef.current.value)
-            console.log(`Logged In`)
-            e.preventDefault()
-        } catch (error) {
-            alert("Error")
-        }
+        e.preventDefault();
+        const token = await loginHospital( emailRef.current.value, passwordRef.current.value )
+        console.log(token)
     }
     return (
         <div>
-            <form id="login" className="log_form active" action="/" >
+            <form id="login" className="log_form active" action="/" onSubmit={handleLogin} >
                 <div className="mb-3">
                     <label htmlFor="hosEmail" className="form-label">Registration Email-ID :</label>
-                    <input ref={emailRef} required type="email" className="form-control" id="hosEmail" />
+                    <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" ref={emailRef} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input ref={passwordRef} required type="password" className="form-control" id="password" />
+                    <input type="password" className="form-control" id="password" name='password' ref={passwordRef} />
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={handleLogin}>Log In</button>
+                <button type="submit" className="btn btn-primary">Log In</button>
             </form>
         </div>
     )
