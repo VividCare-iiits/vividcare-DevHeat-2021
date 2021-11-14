@@ -4,7 +4,8 @@ import './CSS/userLanding.css'
 import UserTimeline from "./UserTimeline";
 
 export const UserLanding = () => {
-    let user;
+    // let user={};
+    let user ;
     useEffect(() => {
         // getUser()
         user =  getUser();
