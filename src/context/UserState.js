@@ -45,17 +45,30 @@ export const getUser = async () => {
     //todo api call
     //API call
     const url = `${host}/api/auth/getuser`
+    let data;
     const response = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'auth-token': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5MDlkY2IzZTRhOTIyOWJhMTVhYjIyIn0sImlhdCI6MTYzNjg2OTA0M30.01gZFWGbuflSnRaxtnOAlFBnGhDjXovhE__q6oh5B8U`
         },
-    });
-    const json = await response.json();
+    }).then((response) => {
+        data = response.json();
+    })
+    return data;
+    // const json = await response.json();
     // console.log(json)
-    const user = json;
-    return user;
+    // const user = json;
+    // console.log(user.name);
+    // return user;
+    // await axios.get(url, {
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'auth-token': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5MDlkY2IzZTRhOTIyOWJhMTVhYjIyIn0sImlhdCI6MTYzNjg2OTA0M30.01gZFWGbuflSnRaxtnOAlFBnGhDjXovhE__q6oh5B8U`}}).then((response) => {
+    //     data = response
+    //     })
+    //     console.log(data);
+    //     return data;
     // }
-   
+
 }

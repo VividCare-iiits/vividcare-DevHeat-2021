@@ -109,6 +109,7 @@ router.get(
       console.log(userID);
       const user = await User.findById(userID).select("-password");
       console.log(user);
+      console.log(user.name);
       res.send(user)
     } catch (error) {
       console.error(error.message);

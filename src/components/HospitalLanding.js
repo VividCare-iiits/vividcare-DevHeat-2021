@@ -1,9 +1,9 @@
 import React from 'react'
-import './CSS/HospitalLanding.css'
+import './CSS/userLanding.css'
 
 const HospitalLanding = () => {
     return (
-        <div>
+        <div className="userMain">
             
         </div>
     )
