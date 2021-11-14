@@ -9,7 +9,6 @@ import HospitalLogin from './HospitalLogin'
 import UserLanding from './UserLanding'
 import UserTimeline from './UserTimeline'
 import UserLogin from './UserLogin'
-import EnterUserinfo from './Content/enterUserinfo'
 import EnterHos from './Content/EnterHos';
 
 const App = () => {
@@ -22,7 +21,6 @@ const App = () => {
           <Route path="/hospitalLogin" element={<HospitalLogin />} />
           <Route path="/userLanding" element={<UserLanding />} />
           <Route path="/userTimeline" element={<UserTimeline />} />
-          <Route path="/enterUserinfo" element={<EnterUserinfo />} />
           <Route path="/enterHospitalInfo" element={<EnterHos />} />
         </Routes>
       </div>

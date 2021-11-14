@@ -1,41 +1,48 @@
-import React, { useState, useRef } from 'react'
-import { signup } from '../firebase/firebase'
+import React, { useRef } from 'react'
 
 const Signup = () => {
-    const [ender, setEnder] = useState('/enterUserInfo');
     const emailRef = useRef();
     const passwordRef = useRef();
-    const passConRef = useRef();
-    async function handleSignup() {
-        if(passwordRef.current.value === passConRef.current.value) {
-            try {
-                await signup(emailRef.current.value, passwordRef.current.value);
-            }
-            catch(error) {
-                setEnder('/userLogin')
-                alert("Account already exists !")
-            }
-        }
-        else{
-            alert("confirm password and password entered are not equal")
-            setEnder('/userLogin')
-        }
+    const nameRef = useRef();
+    const phoneRef = useRef();
+    const aadharRef = useRef();
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        let url = "http://localhost:5000/api/auth/signup"
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: nameRef.current.value, email: emailRef.current.value, password: passwordRef.current.value, aadhar: aadharRef.current.value, phone: phoneRef.current.value})
+        });
+        const json = await response.json();
+        console.log(json);
     }
+
     return (
-        <form id="signup" className="log_form" action={ender}>
+        <form id="signup" className="log_form" onSubmit={handleSignup}>
             <div className="mb-3">
-                <label htmlFor="email" className="form-label">Email:</label>
-                <input required ref={emailRef} type="email" className="form-control" id="email" aria-describedby="emailHelp" />
+                <label htmlFor="name" className="form-label">Name: </label>
+                <input type="text" className="form-control" id="name" name='name' ref={nameRef} />
+            </div>
+            <div className="mb-3">
+                <label htmlFor="email" className="form-label">Email address</label>
+                <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" ref={emailRef} />
             </div>
             <div className="mb-3">
                 <label htmlFor="password" className="form-label">Password</label>
-                <input required ref={passwordRef} type="password" className="form-control" id="password" />
+                <input type="password" className="form-control" id="password" name='password' ref={passwordRef} />
             </div>
             <div className="mb-3">
-                <label htmlFor="con_password" className="form-label">Confirm Password</label>
-                <input required ref={passConRef} type="password" className="form-control" id="con_password" />
+                <label htmlFor="phone" className="form-label">Phone Number: </label>
+                <input type="number" className="form-control" id="phone" name='phone' ref={phoneRef} />
             </div>
-            <button type="submit" className="btn btn-primary" onClick={handleSignup}>Submit</button>
+            <div className="mb-3">
+                <label htmlFor="aadhar" className="form-label">Aadhar Number: </label>
+                <input type="number" className="form-control" id="aadhar" name='aadhar' ref={aadharRef} />
+            </div>
+            <button type="submit" className="btn btn-primary">Sign Up</button>
         </form>
     )
 }
