@@ -54,7 +54,7 @@ export const getUser = async () => {
     });
     const json = await response.json();
     // console.log(json)
-    const user = JSON.stringify(json);
+    const user = json;
     return user;
     // }
    
