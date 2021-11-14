@@ -10,7 +10,6 @@ import UserLanding from './UserLanding'
 import UserTimeline from './UserTimeline'
 import UserLogin from './UserLogin'
 import EnterHos from './Content/EnterHos';
-import HospitalLanding from './HospitalLanding';
 
 const App = () => {
   return (
@@ -23,8 +22,7 @@ const App = () => {
           <Route path="/userLanding" element={<UserLanding />} />
           <Route path="/userTimeline" element={<UserTimeline />} />
           <Route path="/enterHospitalInfo" element={<EnterHos />} />
-          <Route path="/hospitalLanding" element={<HospitalLanding />} />
-        </Routes>
+          </Routes>
       </div>
     </Router>
   )
