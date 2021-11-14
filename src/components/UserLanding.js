@@ -5,10 +5,10 @@ import UserTimeline from "./UserTimeline";
 
 export const UserLanding = () => {
     let user;
-    useEffect(async () => {
+    useEffect(() => {
         // getUser()
-        user = await getUser();
-        console.log(user)
+        user =  getUser();
+        console.log(user);
         //eslint-disable-next-line
     }, [])
     return (
@@ -21,10 +21,10 @@ export const UserLanding = () => {
                                 <i className="fas fa-user"></i>
                             </div>
                             <div className="infoText">
-                                <h3 className="textInfo">{user.name}</h3>
-                                <div className="textInfo" id="userAddhar">Aadhar Number: <span>{user.aadhar}</span> </div>
-                                <div className="textInfo" id="userNumber">Phone Number: <span> {user.phone}</span> </div>
-                                <div className="textInfo" id="userMail">Email Address: <span>{user.email}</span>  </div>
+                                {/* <h3 className="textInfo">{user.name}</h3> */}
+                                {/* <div className="textInfo" id="userAddhar">Aadhar Number: <span>{user.aadhar}</span> </div> */}
+                                {/* <div className="textInfo" id="userNumber">Phone Number: <span> {user.phone}</span> </div> */}
+                                {/* <div className="textInfo" id="userMail">Email Address: <span>{user.email}</span>  </div> */}
                                 <div className="textInfo" id="userEdit"><i className="fas fa-edit"></i> Edit Personal Inforamtion </div>
                             </div>
                         </div>

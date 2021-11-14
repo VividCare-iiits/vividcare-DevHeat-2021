@@ -1,3 +1,4 @@
+import { axios } from 'axios'
 const host = "http://localhost:5000"
 
 // const [token, setToken] = useState({});
@@ -41,19 +42,20 @@ export const signupUser = async (email, password, name, aadhar, phone) => {
 //Get user
 export const getUser = async () => {
     // if (token !== null) {
-        //todo api call
-        //API call
-        const url = `${host}/api/auth/getuser`
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'auth-token': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5MDlkY2IzZTRhOTIyOWJhMTVhYjIyIn0sImlhdCI6MTYzNjg2OTA0M30.01gZFWGbuflSnRaxtnOAlFBnGhDjXovhE__q6oh5B8U`
-            },
-        });
-        const json = await response.json();
-        // console.log(json)
-        const user = JSON.stringify(json);
-        return user;
+    //todo api call
+    //API call
+    const url = `${host}/api/auth/getuser`
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'auth-token': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5MDlkY2IzZTRhOTIyOWJhMTVhYjIyIn0sImlhdCI6MTYzNjg2OTA0M30.01gZFWGbuflSnRaxtnOAlFBnGhDjXovhE__q6oh5B8U`
+        },
+    });
+    const json = await response.json();
+    // console.log(json)
+    const user = json;
+    return user;
     // }
+   
 }

@@ -8,9 +8,9 @@ const fetchuser = require("../middleware/fetchuser");
 
 const JWT_SECRET = "Mohitisagood$boy";
 
-//Route1: Create a user using: POST "/api/auth/createser". No login required
-router.post(
-  "/createuser",
+//Route1: Create a user using: POST "/api/authHospital/createser". No login required
+router.post( 
+    "/createuser",
   [
     body("email", "Enter a valid email").isEmail(),
     body("name", "Enter a valid name").isLength({ min: 3 }),
@@ -18,7 +18,7 @@ router.post(
       min: 5,
     }),
     body("phone", "Enter a valid phone number"),
-    body("aadhar", "Enter a valid aadhar number")
+    body("regID", "Enter a valid Registeration ID")
   ],
   async (req, res) => {
     //if there are errors, return Bad request and the errors
@@ -42,7 +42,7 @@ router.post(
         password: secPass,
         email: req.body.email,
         phone: req.body.phone,
-        aadhar: req.body.aadhar
+        regID: req.body.regId
       });
       const data = {
         user: {
@@ -60,7 +60,7 @@ router.post(
   }
 );
 
-//Route2: Authenticate a user using: POST "/api/auth/login". No login required
+//Route2: Authenticate a user using: POST "/api/authHospital/login". No login required
 router.post(
   "/login",
   [
@@ -101,7 +101,7 @@ router.post(
   }
 );
 
-//Route3: Get logged in User Details using: POST: api/auth/getuser. Login required
+//Route3: Get logged in User Details using: POST: api/authHospital/getuser. Login required
 router.get(
   "/getuser", fetchuser, async (req, res) => {
     try { 
