@@ -1,28 +1,20 @@
-import React, {  useEffect, useState } from 'react'
+import React, {  useEffect } from 'react'
+import './CSS/HospitalLanding.css'
 import { getUser } from '../context/UserState';
-import './CSS/userLanding.css'
 import UserTimeline from "./UserTimeline";
 
-export const UserLanding = () => {
-    // let n;
-    // useEffect(() => {
-    //     // getUser()
-    //     n =  getUser();
-    //     console.log(name);
-    //     setName(n);
-    //     //eslint-disable-next-line
-    // }, [])
-    // console.log(getUser())
-    const userData = getUser();
-    console.log(userData);
-    const user = {
-        name: 'Mohit Agrawal',
-        email: "mohit@gmail.com",
-        phone: 9146328339,
-        aadhar: '1234567891234'
-    }
+export const HospitalLanding = () => {
+    let user;
+    useEffect(async () => {
+        // getUser()
+        user = await getUser();
+        console.log(user)
+        //eslint-disable-next-line
+    }, [])
+
+
     return (
-        <>
+        <div>
             <div className="mainContainer">
                 <div className="userMain">
                     <div className="userInfo">
@@ -39,23 +31,21 @@ export const UserLanding = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="userOptions">
-                        <div className="option" id="userRecord">User Data</div>
+                    <div className="hospitalOptions">
+                        <div className="option" id="userRecord">View Report</div>
                         <div className="option" id="userLocate">Locate Hospital</div>
-                        <div className="option" id="userVerify">Verify Report</div>
+                        <div className="option" id="userEdit">Edit Report</div>
                     </div>
-
                     <div className="button">
                         <button className="submit">Submit</button>
                     </div>
-
                     <div className="userContainer">
                         <UserTimeline></UserTimeline>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
-export default UserLanding
+export default HospitalLanding
