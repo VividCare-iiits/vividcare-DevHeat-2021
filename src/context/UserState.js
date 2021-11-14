@@ -1,31 +1,59 @@
-import React, { useState } from "react";
-import UserContext from "./userContext";
+const host = "http://localhost:5000"
 
-const UserState = (props) => {
-    const host = "http://localhost:5000"
-    const userInitial = []
-    const [user, setUser] = useState({})
-    //Get user
-    const getUser = async () => {
+// const [token, setToken] = useState({});
+let token;
+export const loginUser = async (email, password) => {
+    const url = `${host}/api/auth/login`;
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email, password: password })
+    })
+
+    const json = await response.json();
+    const resCode = await response.statusCode;
+    if (resCode === 200) {
+        token = json
+    }
+    return json;
+}
+
+export const signupUser = async (email, password, name, aadhar, phone) => {
+    let url = `${host}/api/auth/signup`
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name: name, email: email, password: password, aadhar: aadhar, phone: phone })
+    });
+    const json = await response.json();
+    const resCode = await response.statusCode;
+    if (resCode === 200) {
+        token = json
+    }
+    return json;
+}
+
+// const [user, setUser] = useState({})
+//Get user
+export const getUser = async () => {
+    // if (token !== null) {
         //todo api call
         //API call
-        const url = `${host}/api/notes/fetchallnotes`
+        const url = `${host}/api/auth/getuser`
         const response = await fetch(url, {
             method: 'GET',
             headers: {
-              'Content-Type': 'application/json',
-              'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE4ZmJiMjc0ODQ1NWY5ZGNhMzEwM2E2In0sImlhdCI6MTYzNjgxMDUzM30.KKfqrMy7a0xu-prK9azlDZgebv-3ddU9yIva6hKEBwg'
+                'Content-Type': 'application/json',
+                'auth-token': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5MDlkY2IzZTRhOTIyOWJhMTVhYjIyIn0sImlhdCI6MTYzNjg2OTA0M30.01gZFWGbuflSnRaxtnOAlFBnGhDjXovhE__q6oh5B8U`
             },
-          });
-          const json = await response.json();
-          // console.log(json);
-          setUser(json)
-    }
-    return (
-        <UserContext.Provider value={{getUser, user}}>
-            {props.children}
-        </UserContext.Provider>
-    )
+        });
+        const json = await response.json();
+        // console.log(json)
+        const user = JSON.stringify(json);
+        return user;
+    // }
 }
-
-export default UserState;

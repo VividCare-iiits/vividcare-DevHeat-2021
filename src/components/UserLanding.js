@@ -1,13 +1,14 @@
-import React, { useContext, useEffect } from 'react'
-import UserContext from '../context/UserContext';
+import React, {  useEffect } from 'react'
+import { getUser } from '../context/UserState';
 import './CSS/userLanding.css'
 import UserTimeline from "./UserTimeline";
 
 export const UserLanding = () => {
-    const context = useContext(UserContext);
-    const { getUser, user } = context
-    useEffect(() => {
-        getUser()
+    let user;
+    useEffect(async () => {
+        // getUser()
+        user = await getUser();
+        console.log(user)
         //eslint-disable-next-line
     }, [])
     return (

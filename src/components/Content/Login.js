@@ -1,20 +1,13 @@
 import React, { useRef } from 'react';
+import { loginUser } from '../../context/UserState';
 
 const Login = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const handleLogin = async (e) => {
         e.preventDefault();
-        let url = "http://localhost:5000/api/auth/login"
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: emailRef.current.value, password: passwordRef.current.value })
-        });
-        const json = await response.json();
-        console.log(json);
+        const token = await loginUser( emailRef.current.value, passwordRef.current.value )
+        console.log(token)
     }
     return (
         <div>

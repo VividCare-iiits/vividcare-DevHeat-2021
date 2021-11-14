@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import { signupUser } from '../../context/UserState';
 
 const Signup = () => {
     const emailRef = useRef();
@@ -8,16 +9,18 @@ const Signup = () => {
     const aadharRef = useRef();
     const handleSignup = async (e) => {
         e.preventDefault();
-        let url = "http://localhost:5000/api/auth/signup"
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name: nameRef.current.value, email: emailRef.current.value, password: passwordRef.current.value, aadhar: aadharRef.current.value, phone: phoneRef.current.value})
-        });
-        const json = await response.json();
-        console.log(json);
+        // let url = "http://localhost:5000/api/auth/signup"
+        // const response = await fetch(url, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({ name: nameRef.current.value, email: emailRef.current.value, password: passwordRef.current.value, aadhar: aadharRef.current.value, phone: phoneRef.current.value})
+        // });
+        // const json = await response.json();
+        // console.log(json);
+        const token = await signupUser(nameRef.current.value,emailRef.current.value, passwordRef.current.value, aadharRef.current.value, phoneRef.current.value)
+        console.log(token);
     }
 
     return (
